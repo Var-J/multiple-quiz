@@ -1,15 +1,29 @@
+import Header from "@/components/Header";
 import QuestionBox from "@/components/QuestionBox";
 import { Question } from "@/typing";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 
 type Props = {
-  questions: Question[]
-}
+  questions: Question[];
+};
 
-function QuestionPage({ questions }: Props) {  
+function QuestionPage({ questions }: Props) {
+  const session = useSession();
+
+  if (session.status === "unauthenticated") {
+    return (
+      <div className="h-screen w-full flex flex-col justify-center items-center">
+        <h1 className="text-4xl">Access Denied</h1>
+        <Link href="/" className="p-4 bg-red-200 rounded-xl mt-5 hover:bg-red-100 transition duration-200">Go Back</Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex w-full space-y-10 p-10 justify-center items-center">
+    <div className="flex w-full space-y-10 p-10 mt-24 justify-center items-center">
+      <Header />
       <QuestionBox questions={questions} />
     </div>
   );
