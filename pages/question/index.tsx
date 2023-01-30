@@ -1,8 +1,13 @@
 import QuestionBox from "@/components/QuestionBox";
+import { Question } from "@/typing";
 import React from "react";
 
-function QuestionPage({ questions }: never) {
-  console.log(questions)
+type Props = {
+  questions: Question[]
+}
+
+function QuestionPage({ questions }: Props) {  
+
   return (
     <div className="flex w-full space-y-10 p-10 justify-center items-center">
       <QuestionBox questions={questions} />

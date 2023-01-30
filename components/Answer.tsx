@@ -6,8 +6,8 @@ export default function Answer(props: any) {
     return (
         <li>
             <button
-                className="p-2 flex items-center gap-2 hover:text-blue-900"
-                onClick={() => answerQuestion(answerValue)}
+                className="py-2 hover:text-blue-900"
+                onClick={() => answerQuestion(answerText)}
             >
                 {`${answerValue}. ${answerText}`}
             </button>
